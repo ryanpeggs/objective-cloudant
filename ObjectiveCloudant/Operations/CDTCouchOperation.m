@@ -39,6 +39,8 @@ NSInteger const kCDTNoHTTPStatus = 0;
 
 - (NSString *)httpPath { return @"/"; }
 
+- (NSDictionary<NSString *, NSString *>*)httpHeaders { return @{}; }
+
 - (NSString *)httpMethod { return @"GET"; }
 
 #pragma mark Concurrent operation NSOperation functions

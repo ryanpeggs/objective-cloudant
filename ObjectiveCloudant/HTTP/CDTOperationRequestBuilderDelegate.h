@@ -36,6 +36,11 @@
  */
 - (nonnull NSString *)httpMethod;
 
+/**
+ HTTP headers for this operation.
+ */
+- (nonnull NSDictionary<NSString *, NSString *>*)httpHeaders;
+
 @optional
 
 /**

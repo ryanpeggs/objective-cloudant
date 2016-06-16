@@ -26,6 +26,7 @@
 @property (nonatomic, strong) NSString *method;
 @property (nonatomic, strong) NSArray *queryItems;
 @property (nonatomic, strong) NSData *body;
+@property (nonatomic, strong) NSDictionary<NSString *, NSString *> *headers;
 
 @end
 
@@ -40,6 +41,7 @@
         _method = operation.httpMethod;
         _rootURL = operation.rootURL;
         _path = operation.httpPath;
+        _headers = operation.httpHeaders;
 
         // Optional parts of CDTOperationRequestBuilderDelegate
         if ([operation respondsToSelector:@selector(queryItems)]) {
@@ -68,6 +70,10 @@
                                 cachePolicy:NSURLRequestUseProtocolCachePolicy
                             timeoutInterval:10.0];
 
+    for (NSString *headerField in self.headers) {
+        [request addValue:self.headers[headerField] forHTTPHeaderField:headerField];
+    }
+    
     [request setHTTPMethod:self.method];
 
     if (self.body) {
